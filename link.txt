@@ -1,1 +1,2 @@
 https://docs.microsoft.com/ru-ru/dotnet/framework/wcf/samples/getting-started-sample
+https://sohabr.net/habr/post/264889/#top

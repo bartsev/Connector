@@ -1,0 +1,35 @@
+ГИС ЖКХ
+- «Сведения об информации, необходимой для внесения платы за ЖКУ через кредитные организации» 1.1 (тестовый контур)
+описание: http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10gisGKHtest/1.10/testSmev/SID0004157 
+адрес   : http://smev-MVF.test.gosuslugi.ru:7777/gateway/services/SID0004157?wsdl
+
+- «Сведения об информации, необходимой для внесения платы за ЖКУ через кредитные организации» 1.1 (промышленный контур)
+описание: http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10gisGKHtest/1.10/p00smev/SID0004157 
+
+- «Сведения о внесении платы кредитными организациями» 1.1 (тестовый контур)
+описание: http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10KOSVED/1.10/testSmev/SID0004766 
+адрес   : http://smev-MVF.test.gosuslugi.ru:7777/gateway/services/SID0004766?wsdl
+
+- «Сведения о внесении платы кредитными организациями» 1.1 (промышленный контур)
+описание: http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10KOSVED/1.10/p00smev/SID0004158 
+
+-<Cведения о получателях платежей за ЖКХ>1.0 (промышленный контур)
+описание: http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10payGKH/1.00/p00smev/SID0004162
+
+-<Cведения о получателях платежей за ЖКХ>1.0 (тестовый контур)
+адрес   : http://smev-mvf.test.gosuslugi.ru:7777/gateway/services/SID0004768?wsdl
+
+-<Cведения о получателях платежей за ЖКХ>1.2  (промышленный контур)
+http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSV10GISJKH/1.20/p00smev/SID0004781
+
+http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSVsvedPayGKYKO/1.00/testSmev/SID0004153 
+- «Сведения об информации, необходимой для внесения платы за ЖКУ через кредитные организации» 1.0 (устаревший) (тестовый контур)
+http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSVsvedPayGKYKO/1.00/p00smev/SID0004153 
+- «Сведения об информации, необходимой для внесения платы за ЖКУ через кредитные организации» 1.0 (устаревший) (промышленный контур)
+http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSVsvedPayKO/1.00/testSmev/SID0004154 
+- «Сведения о внесении платы кредитными организациями» 1.0 (устаревший) (тестовый контур)
+http://smev.gosuslugi.ru/portal/services.jsp#!/F/MNSVsvedPayKO/1.00/p00smev/SID0004155 
+- «Сведения о внесении платы кредитными организациями» 1.0 (устаревший) (промышленный контур)
+
+ГИС ГМП
+SID0003998

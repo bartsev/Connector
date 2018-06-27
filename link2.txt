@@ -1,1 +1,2 @@
 http://mustiksprogramming.blogspot.com/2012/09/SmevWcf.html
+https://docs.microsoft.com/ru-ru/dotnet/framework/wcf/extending/client-channel-level-programming

@@ -1,1 +1,1 @@
-Основы Windows Communication Foundation для .NET Framework 3.5.pdf
+https://docs.microsoft.com/ru-ru/dotnet/framework/wcf/samples/ajax-service-with-json-and-xml-sample

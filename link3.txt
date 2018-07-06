@@ -4,3 +4,4 @@ http://oldcouncil.blogspot.ru/2013/03/apache-cxf-soap.html
 https://itnan.ru/post.php?c=1&p=350158
 http://grigory-panov.blogspot.com/2012/06/cryptopro.html
 https://stackoverflow.com/questions/2052251/is-there-an-easier-way-to-sign-an-xml-document-in-java
+https://apache.googlesource.com/santuario-java/+/ad336a330ed559c329d86f6e7ee865bdc252409f/samples/org/apache/xml/security/samples/signature/CreateSignature.java

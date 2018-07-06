@@ -3,3 +3,4 @@ https://javarush.ru/groups/posts/1176-veb-servisih-shag-2-kak-uprostitjh-napisan
 http://oldcouncil.blogspot.ru/2013/03/apache-cxf-soap.html
 https://itnan.ru/post.php?c=1&p=350158
 http://grigory-panov.blogspot.com/2012/06/cryptopro.html
+https://stackoverflow.com/questions/2052251/is-there-an-easier-way-to-sign-an-xml-document-in-java

@@ -6,3 +6,4 @@ http://grigory-panov.blogspot.com/2012/06/cryptopro.html
 https://stackoverflow.com/questions/2052251/is-there-an-easier-way-to-sign-an-xml-document-in-java
 https://apache.googlesource.com/santuario-java/+/ad336a330ed559c329d86f6e7ee865bdc252409f/samples/org/apache/xml/security/samples/signature/CreateSignature.java
 https://www.cryptopro.ru/forum2/default.aspx?g=posts&t=13443
+https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-server-2010/aa579185(v=exchg.140)

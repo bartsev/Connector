@@ -7,3 +7,4 @@ https://stackoverflow.com/questions/2052251/is-there-an-easier-way-to-sign-an-xm
 https://apache.googlesource.com/santuario-java/+/ad336a330ed559c329d86f6e7ee865bdc252409f/samples/org/apache/xml/security/samples/signature/CreateSignature.java
 https://www.cryptopro.ru/forum2/default.aspx?g=posts&t=13443
 https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-server-2010/aa579185(v=exchg.140)
+https://blogs.msdn.microsoft.com/alejacma/2009/03/16/how-to-create-a-self-signed-certificate-with-cryptoapi-c/

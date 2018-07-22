@@ -10,3 +10,4 @@ https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-ser
 https://blogs.msdn.microsoft.com/alejacma/2009/03/16/how-to-create-a-self-signed-certificate-with-cryptoapi-c/
 http://citforum.ru/security/articles/delphi/
 https://docs.microsoft.com/en-us/windows/desktop/api/wincrypt/nf-wincrypt-cryptsignandencodecertificate
+https://developer.aladdin-rd.ru/pkcs11/2.1.0/api/index.html

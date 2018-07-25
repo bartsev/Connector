@@ -12,3 +12,4 @@ http://citforum.ru/security/articles/delphi/
 https://docs.microsoft.com/en-us/windows/desktop/api/wincrypt/nf-wincrypt-cryptsignandencodecertificate
 https://developer.aladdin-rd.ru/pkcs11/2.1.0/api/index.html
 http://codingrus.ru/readarticle.php?article_id=716
+http://kodu.neti.ee/~juri4/vfpplus/using_winapi_structures_01_ru.htm

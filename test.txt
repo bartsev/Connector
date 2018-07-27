@@ -1,0 +1,347 @@
+StoreName = "MY"
+hStore = CertOpenSystemStore(0, @StoreName)
+? "CertOpenSystemStore -> ", hStore
+*pContext = CertEnumCertificatesInStore(hStore, 0)
+*? "CertEnumCertificatesInStore ->", pContext
+pContext = 0
+*CertName =  'Òåñòîâûé ÓÖ ÎÎÎ "ÊÐÈÏÒÎ-ÏÐÎ"'
+*CertName = "VeriSign"
+CertName = "Áàðöåâ À."
+pContext = CertFindCertificateInStore(hStore, MY_ENCODING, 0, CERT_FIND_SUBJECT_STR, @CertName, 0)
+if pcontext != 0
+	CertNameString = SPACE(128)            
+	response = CertGetNameString(pContext, CERT_NAME_SIMPLE_DISPLAY_TYPE, 0, .NULL., @CertNameString, 128)
+	? "CertGetNameString ->", response
+	? "Name = ", CertNameString 
+	MESSAGEBOX(CertNameString)
+	response = CertFreeCertificateContext(pContext) 
+	? "CertFreeCertificateContext ->", response
+ENDIF
+	
+*	pContext = CertEnumCertificatesInStore(hStore, pContext)
+*	? "CertEnumCertificatesInStore ->", pContext
+*	
+*ENDDO
+
+*	cbElement = 0
+*	response = 0
+*	TRY
+*		response = CertSerializeCertificateStoreElement(pContext, 0, 0, @cbElement)
+*		? "CertSerializeCertificateStoreElement ->", response, cbElement
+*	CATCH
+*		? "CertSerializeCertificateStoreElement ->", response, cbElement	
+*		ErrorCode = GetLastError()
+*		? "errorCode = ", ErrorCode
+*	FINALLY
+*		response = CertFreeCertificateContext(pContext) 
+*		? "CertFreeCertificateContext finally ->", response		
+*		response = CertCloseStore(hStore, 0)
+*		? "CertCloseStore finally ->", response
+*		RETURN
+*	ENDTRY
+*	response = 0
+*	Element = SPACE(cbElement)
+*	response = CertSerializeCertificateStoreElement(pContext, 0, @Element, @cbElement)
+*	? "CertSerializeCertificateStoreElement ->", response
+*	STRTOFILE(Element, "sample.cer")
+*	response = CertFreeCertificateContext(pContext) 
+*	? "CertFreeCertificateContext ->", response
+*ELSE
+*	? "context is empty"	
+*ENDIF
+response = CertCloseStore(hStore, 0)
+? "CertCloseStore ->", response
+RETURN
+
+*? "begin"
+*TRY
+*S = CREATEOBJECT('attrib', 'pz:lpzString')
+*CATCH
+*IF VARTYPE(S) == 'L'
+*	? "error"
+*ELSE
+*	? "OK"
+*ENDIF
+*	S.CreateMember('C', 'ptr')
+*FINALLY
+*	RELEASE S
+*ENDTRY
+ 	
+*RETURN
+
+
+*hProv = 0
+*response = CryptAcquireContext(@hProv, .NULL., ET_PROVIDER, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)
+*? response
+*IF response == 0
+*  n = GetLastError()
+*  ? n
+*ENDIF
+*password = STRCONV(STRCONV("Gh0uhfvvbcn",1),5) + CHR(0) + CHR(0)
+*response = CryptSetProvParam(@hProv, PP_KEYEXCHANGE_PIN, @password, 0)
+*? response
+*IF response == 0
+*  n = GetLastError()
+*  ? n
+*ENDIF
+
+*CryptReleaseContext(@hProv, 0)  
+*RETURN
+
+*pszX500 = "E=bartsev@mail.ru, CN=Áàðöåâ À., OU=òåñò, O=òåñò, L=Ñàðàòîâ, S=Ñàðàòîâñêàÿ, C=RU"
+pszX500 = "CN=Áàðöåâ À." + CHR(0)
+*STRTOFILE(pszX500, "pszX500.txt")  
+pszX500u = STRCONV(STRCONV(pszX500, 1), 5) + CHR(0) + CHR(0)
+*STRTOFILE(pszX500U, "pszX500u.txt")  
+pbEncoded = ""
+pcbEncoded = 0
+oNameStr = CREATEOBJECT('attrib', 'c' + alltrim(STR(LEN(pszX500))) + ':p1')
+? "Size = ", oNameStr.SizeOf()
+? "Members = ", oNameStr.GetCMembers()
+oNameStr.p1 = pszX500 
+pNameStr = oNameStr.GetPointer(oNameStr.Sizeof())
+response = CertStrToName(X509_ASN_ENCODING, pNameStr, CERT_X500_NAME_STR, .NULL., 0, @pcbEncoded, .NULL.)
+
+IF response == 0 
+	n = getLastError()
+	? n, pcbEncoded
+	RETURN
+ENDIF
+
+? pcbEncoded
+pbEncoded = SPACE(pcbEncoded)
+oNameBlob = CREATEOBJECT('attrib', 'c' + alltrim(STR(pcbEncoded)) + ':p1')
+pNameBlob = oNameBlob.GetPointer(oNameBlob.SizeOf())
+
+response = CertStrToName(X509_ASN_ENCODING, pNameStr, CERT_X500_NAME_STR, .NULL., @pbEncoded, @pcbEncoded, .NULL.)
+? "CertStrToName - ", response 
+? "NameBlob = ", oNameBlob.GetString()
+? "pbEncoded = ", pbEncoded
+*? "CertName - ", pbEncoded
+oNameBlob.SetPointer(pNameBlob)
+? "NameBlob = ", oNameBlob.GetString()
+buf_size = (LEN(pszX500) + 1) * 2
+buf = SPACE(buf_size)
+response = CertNameToStr(X509_ASN_ENCODING, @pbEncoded, CERT_X500_NAME_STR, @buf, buf_size)
+? "CertNameToStr - ",response
+? "result=", buf
+
+CertName = "CN=Bartsev A." + CHR(0)
+pcbEncoded = 0
+response = CertStrToName(X509_ASN_ENCODING, @CertName, CERT_X500_NAME_STR, .NULL., 0, @pcbEncoded, .NULL.)
+IF response == 0 
+	n = getLastError()
+	? n, pcbEncoded
+	RETURN
+ENDIF
+
+? pcbEncoded
+NameBlob = SPACE(pcbEncoded)
+response = CertStrToName(X509_ASN_ENCODING, @CertName, CERT_X500_NAME_STR, .NULL., @NameBlob, @pcbEncoded, .NULL.)
+? "CertStrToName result = ", response 
+? "NameBlob = ", NameBlob
+STRTOFILE(NameBlob, "NameBlob.txt")
+RETURN
+
+lqGUID = REPLICATE(CHR(0), 16)
+nReturn = CoCreateGuid(@lqGUID)
+? lqGUID
+oNameBlob = CreateObject('CRYPTOAPI_BLOB')
+? oNameBlob.SizeOf()
+oNameBlob.cbData = LEN(lqGUID)
+oNameBlob.pbData = lqGUID
+? oNameBlob.cbData
+? oNameBlob.pbData 
+? oNameBlob.SizeOf()
+release oNameBlob
+
+RETURN
+
+
+CertName = "CN=Áàðöåâ À." + CHR(0)
+*STRTOFILE(pszX500, "pszX500.txt")  
+pcbEncoded = 0
+response = CertStrToName(X509_ASN_ENCODING, @CertName, CERT_X500_NAME_STR, .NULL., 0, @pcbEncoded, .NULL.)
+IF response == 0 
+	n = getLastError()
+	? n, pcbEncoded
+	RETURN
+ENDIF
+
+? pcbEncoded
+NameBlob = SPACE(pcbEncoded)
+oNameBlob = CreateObject('CRYPTOAPI_BLOB')
+pNameBlob = oNameBlob.GetPointer(1000)
+
+response = CertStrToName(X509_ASN_ENCODING, @CertName, CERT_X500_NAME_STR, .NULL., pNameBlob, @pcbEncoded, .NULL.)
+oNameBlob.SetPointer(pNameBlob)
+? "CertStrToName result = ", response 
+? "NameBlob.cbData = ", oNameBlob.cbData
+? "NameBlob.pbData = ", oNameBlob.pbData
+*? "pbEncoded = ", pbEncoded
+*? "CertName - ", pbEncoded
+oNameBlob.FreePointer(pNameBlob)
+RELEASE oNameBlob
+
+*typedef struct _CERT_INFO {
+*  DWORD                      dwVersion;				p1
+*  CRYPT_INTEGER_BLOB         SerialNumber;				p2
+*  CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm;		p3
+*  CERT_NAME_BLOB             Issuer;					p4
+*  FILETIME                   NotBefore;				p5
+*  FILETIME                   NotAfter;					p6
+*  CERT_NAME_BLOB             Subject;					p7
+*  CERT_PUBLIC_KEY_INFO       SubjectPublicKeyInfo;		p8
+*  CRYPT_BIT_BLOB             IssuerUniqueId;			p9
+*  CRYPT_BIT_BLOB             SubjectUniqueId;			p10
+*  DWORD                      cExtension;				p11
+*  PCERT_EXTENSION            rgExtension;				p12
+*} CERT_INFO, *PCERT_INFO;
+
+*typedef struct _CERT_PUBLIC_KEY_INFO {
+*  CRYPT_ALGORITHM_IDENTIFIER Algorithm;
+*  CRYPT_BIT_BLOB             PublicKey;
+*} CERT_PUBLIC_KEY_INFO, *PCERT_PUBLIC_KEY_INFO;
+
+*typedef struct _CRYPT_ALGORITHM_IDENTIFIER {
+*  LPSTR            pszObjId;
+*  CRYPT_OBJID_BLOB Parameters;
+*} CRYPT_ALGORITHM_IDENTIFIER, *PCRYPT_ALGORITHM_IDENTIFIER;
+
+*typedef struct _CRYPTOAPI_BLOB {
+*  DWORD cbData;
+*  BYTE  *pbData;
+*} CRYPT_INTEGER_BLOB,
+
+*typedef struct _CRYPT_BIT_BLOB {
+*  DWORD cbData;
+*  BYTE  *pbData;
+*  DWORD cUnusedBits;
+*} CRYPT_BIT_BLOB, *PCRYPT_BIT_BLOB;
+
+*typedef struct _CERT_CONTEXT {
+*  DWORD      dwCertEncodingType;
+*  BYTE       *pbCertEncoded;
+*  DWORD      cbCertEncoded;
+*  PCERT_INFO pCertInfo;
+*  HCERTSTORE hCertStore;
+*} CERT_CONTEXT, *PCERT_CONTEXT;
+
+*typedef struct _CERT_INFO {
+*  DWORD                      dwVersion;				p1
+*  CRYPT_INTEGER_BLOB         SerialNumber;				p2
+*  CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm;		p3
+*  CERT_NAME_BLOB             Issuer;					p4
+*  FILETIME                   NotBefore;				p5
+*  FILETIME                   NotAfter;					p6
+*  CERT_NAME_BLOB             Subject;					p7
+*  CERT_PUBLIC_KEY_INFO       SubjectPublicKeyInfo;		p8
+*  CRYPT_BIT_BLOB             IssuerUniqueId;			p9
+*  CRYPT_BIT_BLOB             SubjectUniqueId;			p10
+*  DWORD                      cExtension;				p11
+*  PCERT_EXTENSION            rgExtension;				p12
+*} CERT_INFO, *PCERT_INFO;
+
+local oCertContext, pCertContext
+
+*CryptoApiBlob = CREATEOBJECT('CRYPTOAPI_BLOB')
+*Algorithm = CREATEOBJECT('CRYPT_ALGORITHM_IDENTIFIER')
+*Algorithm.Parameters = CryptoApiBlob 
+*PublicKey = CREATEOBJECT('CRYPT_BIT_BLOB')
+*SubjectPublicKeyInfo = CREATEOBJECT('CERT_PUBLIC_KEY_INFO')
+*SubjectPublicKeyInfo.Algorithm = Algorithm 
+*SubjectPublicKeyInfo.PublicKey = PublicKey 
+
+*? SubjectPublicKeyInfo.SizeOf()
+*? Algorithm.SizeOf()
+*
+*RELEASE CryptoApiBlob 
+*RELEASE Algorithm
+*RELEASE PublicKey 
+*RELEASE SubjectPublicKeyInfo 
+
+*return
+
+LOCAL SerialNumber
+
+oCertContext = CREATEOBJECT('CERT_CONTEXT')
+? "CertInfo Size - ", oCertContext.pCertInfo.SizeOf()
+? "CertContext Size - ", oCertContext.SizeOf()
+
+CertString = FILETOSTR("my_cert.cer")
+pCertContext = oCertContext.GetPointer(oCertContext.SizeOf())
+pCertContext = CertCreateCertificateContext(MY_ENCODING, @CertString, LEN(CertString))
+IF pCertContext == 0 
+	? "fail"
+	RETURN
+ENDIF	
+
+LOCAL N
+
+? "CertCreateCertificateContext - OK"
+oCertContext.SetPointer(pCertContext)
+Try
+	SerialNumber = oCertContext.SetVariable(oCertContext.pCertInfo.SerialNumber.pbData, oCertContext.pCertInfo.SerialNumber.cbData)
+	StrToFile(SerialNumber,"SerialNumber.txt")
+Catch
+	N = GetLastError()
+	? "Error - ", N
+EndTry
+
+? "SerialNumber - ", SerialNumber
+? "Len - ", Len(serialNumber)
+? "oCertContext.pCertInfo.dwVersion - ", oCertContext.pCertInfo.dwVersion
+? "oCertContext.pCertInfo.SerialNumber.cbData - ", oCertContext.pCertInfo.SerialNumber.cbData
+For i = 1 to Len(SerialNumber)
+	? Val(Substr(SerialNumber,i,1))
+EndFor
+? "oCertContext.pCertInfo.SerialNumber.pbData - ", oCertContext.pCertInfo.SerialNumber.pbData
+? FileTimeToDateTime(oCertContext.pCertInfo.NotBefore)
+? FileTimeToDateTime(oCertContext.pCertInfo.NotAfter)
+
+*N = oCertContext.pCertInfo.SerialNumber.pbData
+*? "N - ", N
+
+RELEASE oCertContext
+
+response = CertFreeCertificateContext(pCertContext) 
+? "CertFreeCertificateContext - ", response
+
+*-----------------------------------------------------------------
+Procedure FileTimeToDateTime
+LParameter toFileTime
+	
+	*-----------------------------------------------------------------
+	* Convert the FileTime structure into local time.
+	*-----------------------------------------------------------------
+	Local loLocalFileTime, lcLocalTime
+	loLocalFileTime = CreateObject( "FILETIME" )
+	lcLocalTime = loLocalFileTime.GetString()
+	FileTimeToLocalFileTime( toFileTime.GetString(), @lcLocalTime )
+	
+	*-----------------------------------------------------------------
+	* Convert the local file time into a SYSTEMTIME structure
+	*-----------------------------------------------------------------
+	Local loSystemTime, lcSystemTime
+	loSystemTime = CreateObject( "SYSTEMTIME" )
+	lcSystemTime = loSystemTime.GetString()
+	FileTimeToSystemTime( lcLocalTime, @lcSystemTime )
+	loSystemTime.SetString( m.lcSystemTime )
+	
+	*-----------------------------------------------------------------
+	* Now we can use VFP's DateTime function to conver the SYSTEMTIME
+	* structure into a datetime variable
+	*-----------------------------------------------------------------
+	Local ltFileTime
+	With loSystemTime
+		ltFileTime = DateTime( ;
+			.wYear, ;
+			.wMonth, ;
+			.wDay, ;
+			.wHour, ;
+			.wMinute, ;
+			.wSecond ;
+		)
+	Endwith
+	
+Return m.ltFileTime

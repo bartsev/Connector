@@ -17,3 +17,5 @@ https://www.cryptopro.ru/forum2/default.aspx?g=posts&t=3452
 
 http://www.foxitaly.com/ecerlini/struttureapi_en.html
 http://fox.wikis.com/wc.dll?Wiki~ApiStructureClass
+
+http://foxclub.ru/sol/solution543.php

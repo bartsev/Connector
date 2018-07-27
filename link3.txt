@@ -14,3 +14,6 @@ https://developer.aladdin-rd.ru/pkcs11/2.1.0/api/index.html
 http://codingrus.ru/readarticle.php?article_id=716
 http://kodu.neti.ee/~juri4/vfpplus/using_winapi_structures_01_ru.htm
 https://www.cryptopro.ru/forum2/default.aspx?g=posts&t=3452
+
+http://www.foxitaly.com/ecerlini/struttureapi_en.html
+http://fox.wikis.com/wc.dll?Wiki~ApiStructureClass

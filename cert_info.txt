@@ -1,0 +1,48 @@
+------- CERT_INFO ------
+DWORD ul:dwVersion
+CRYPT_INTEGER_BLOB o:SerialNumber :
+	DWORD ul:cbData
+	BYTE  ul:pbData
+CERT_NAME_BLOB o:Issuer :
+	DWORD ul:cbData
+	BYTE  ul:pbData
+FILETIME o:NotBefore :
+	DWORD l:dwLowDateTime
+	DWORD l:dwHighDateTime
+FILETIME o:NotAfter :
+	DWORD l:dwLowDateTime
+	DWORD l:dwHighDateTime
+CERT_NAME_BLOB o:Subject :
+	DWORD ul:cbData
+	BYTE  ul:pbData
+CERT_PUBLIC_KEY_INFO o:SubjectPublicKeyInfo :
+	CRYPT_ALGORITHM_IDENTIFIER o:Algorithm :
+		LPSTR pz:pszObjId
+		CRYPT_OBJID_BLOB o:Params :
+			DWORD ul:cbData
+			BYTE  ul:pbData
+	CRYPT_BIT_BLOB o:PublicKey :
+		DWORD ul:cbData
+		BYTE  pb:pbData
+		DWORD ul:cUnusedBits
+CRYPT_BIT_BLOB o:IssuerUniqueId :
+	DWORD ul:cbData
+	BYTE  pb:pbData
+	DWORD ul:cUnusedBits
+CRYPT_BIT_BLOB o:SubjectUniqueId :
+	DWORD ul:cbData
+	BYTE  pb:pbData
+	DWORD ul:cUnusedBits
+DWORD ul:cExtension
+PCERT_EXTENSION ul:rgExtension
+
+------- CERT_NAME_INFO ------
+DWORD ul:cRDN
+PCERT_RDN po:RDN :
+	DWORD	ul:cRDNAttr
+	PCERT_RDN_ATTR po:RDNAttr :
+		LPSTR ul:pszObjId
+		DWORD ul:dwValueType
+		CERT_RDN_VALUE_BLOB o:Value
+			DWORD ul:cbData
+			BYTE  ul:pbData

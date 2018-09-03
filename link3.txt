@@ -20,3 +20,5 @@ http://fox.wikis.com/wc.dll?Wiki~ApiStructureClass
 
 http://foxclub.ru/sol/solution543.php
 http://www.codenet.ru/db/vfp/winapi/
+
+http://geodesist.ru/threads/kak-proverit-koordinaty-povorotnyx-tochek-granic-zemelnogo-uchastka.6927/

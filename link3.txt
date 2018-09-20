@@ -24,3 +24,4 @@ http://www.codenet.ru/db/vfp/winapi/
 http://geodesist.ru/threads/kak-proverit-koordinaty-povorotnyx-tochek-granic-zemelnogo-uchastka.6927/
 https://habr.com/company/mobile_one/blog/423125/
 https://habr.com/post/422985/
+https://habr.com/post/417209/

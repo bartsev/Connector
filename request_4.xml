@@ -1,0 +1,50 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.id-sys.ru/schemas/idbank/common/2012/0.01/" xmlns:ns1="http://www.id-sys.ru/schemas/idbank/customer/2015/0.01/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+ <soapenv:Header>
+     <wsse:Security soapenv:mustUnderstand="1">
+         <wsse:UsernameToken wsu:Id="uuid_96cb9d66-2781-4989-b36b-583091729b25">
+             <wsse:Username>ISIMPLE</wsse:Username> 
+             <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">isimple</wsse:Password> 
+          </wsse:UsernameToken>
+      </wsse:Security>
+  </soapenv:Header>
+ <soapenv:Body>
+      <ns:PutDirectoryRq>
+        <!--Optional:-->
+         <ns:msgMode>0</ns:msgMode>
+         <ns:Directories>
+           <ns:CustomerDirectory>
+              <ns:Customers>
+                  <!--1 or more repetitions:-->
+                  <ns:Customer ID="999999" type="ФЛ">
+                    <ns1:FIO>
+                        <ns:Surname>Паниковский</ns:Surname>
+                        <ns:FirstName>Михаил</ns:FirstName>
+                        <!--Optional:-->
+                        <ns:Patronymic>Самуэлевич</ns:Patronymic>
+                     </ns1:FIO>
+                     <!--Optional:-->
+                     <ns1:INN>578746212140</ns1:INN>
+                     <!--Optional:-->
+                     <ns1:Identification type="21">
+                       <!--Optional:-->
+                        <ns:Series>4861</ns:Series>
+                        <ns:Number>166071</ns:Number>
+                    </ns1:Identification>
+                    <ns1:ContactInfo>
+                        <!--Optional:-->
+                        <ns:mobile>0079112345644</ns:mobile>
+                    </ns1:ContactInfo>
+                     <!--Optional:-->
+                     <ns1:Account kind="1" category="BnkFulAth" blocked="0">
+                       <Account>50461355300000002739</Account> 
+                       <Bank>
+                           <BIK>046311772</BIK>
+                       </Bank>
+                     </ns1:Account>
+                  </ns:Customer>
+               </ns:Customers>
+            </ns:CustomerDirectory>
+         </ns:Directories>
+      </ns:PutDirectoryRq>
+   </soapenv:Body>
+</soapenv:Envelope>
